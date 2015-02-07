@@ -29,19 +29,5 @@ namespace InvoicePrintingView
             InitializeComponent();
             base.DataContext = new ViewModel();
         }
-
-        private void Window_Loaded_1(object sender, RoutedEventArgs e)
-        {
-            /*
-            var dpd = DependencyPropertyDescriptor.FromProperty(ItemsControl.ItemsSourceProperty, typeof(DataGrid));
-            if (dpd != null)
-            {
-                dpd.AddValueChanged(MainGrid, ThisIsCalledWhenPropertyIsChanged);
-            }*/
-        }
-
-        private void ThisIsCalledWhenPropertyIsChanged(object sender, EventArgs e)
-        {
-        }
     }
 }

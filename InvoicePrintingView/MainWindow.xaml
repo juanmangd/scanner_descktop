@@ -3,15 +3,55 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Invoice Billing" 
         Width="1200" Height="600"  
-        Loaded="Window_Loaded_1"
         ResizeMode="NoResize"
-        WindowState="Maximized" Icon="Images\print.ico">
+        WindowState="Maximized" Icon="Images\print.ico" Background="#FF3E4A57">
     <Window.Resources>
         <SolidColorBrush x:Key="ReadOnlyTextBrush" Color="#555555" />
+        <Style x:Key="loginButton" TargetType="{x:Type Button}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Grid>
+                            <Rectangle x:Name="rectangle" Stroke="#FF0074FF" StrokeThickness="2" RadiusX="20" RadiusY="20">
+                                <Rectangle.Fill>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" MappingMode="RelativeToBoundingBox">
+                                        <GradientStop Color="#FF3E4A57" Offset="0.134"/>
+                                        <GradientStop Color="#FF778796" Offset="0.071"/>
+                                    </LinearGradientBrush>
+                                </Rectangle.Fill>
+                            </Rectangle>
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsFocused" Value="True"/>
+                            <Trigger Property="IsDefaulted" Value="True"/>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Fill" TargetName="rectangle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" MappingMode="RelativeToBoundingBox">
+                                            <GradientStop Color="#FF3E4A57" Offset="0.975"/>
+                                            <GradientStop Color="#FF445E76" Offset="0.465"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Fill" TargetName="rectangle">
+                                    <Setter.Value>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" MappingMode="RelativeToBoundingBox">
+                                            <GradientStop Color="#FF3E4A57" Offset="0.922"/>
+                                            <GradientStop Color="#FF202628" Offset="0.071"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False"/>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Window.Resources>
-    <Window.Background>
-        <ImageBrush ImageSource="Images/vector.png"/>
-    </Window.Background>
     <DockPanel>
 
         <DockPanel LastChildFill="False" DockPanel.Dock="Top" Margin="5,0,5,0">
@@ -24,13 +64,14 @@
         </DockPanel>
         
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-            <TextBlock Text="Number of items: " TextWrapping="NoWrap" FontSize="20" Foreground="#FFB62323"/>
-            <TextBlock Text="{Binding Path = ItemCount}" TextWrapping="Wrap" FontSize="20" Foreground="#FFCD1717"/>
+            <TextBlock Text="Number of items: " TextWrapping="NoWrap" FontSize="20" Foreground="#FF0074FF"/>
+            <TextBlock Text="{Binding Path = ItemCount}" TextWrapping="Wrap" FontSize="20" Foreground="#FF0074FF"/>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-            <TextBlock Text="Total Price: " TextWrapping="NoWrap" FontSize="20" Foreground="#FFB01F1F"/>
-            <TextBlock Text="{Binding Path = TotalPrice}" TextWrapping="Wrap" FontSize="20" Foreground="#FFB41313" />
+            <TextBlock Text="Total Price: " TextWrapping="NoWrap" FontSize="20" Foreground="#FF0074FF"/>
+            <TextBlock Text="{Binding Path = TotalPrice}" TextWrapping="Wrap" FontSize="20" Foreground="#FF0074FF" />
+            
         </StackPanel>
 
         <Grid DockPanel.Dock="Bottom">
@@ -43,17 +84,11 @@
                 <RowDefinition Height="100" />
             </Grid.RowDefinitions>
 
-            <TextBox Text="{Binding Path= ScannedItemBarcode}" x:Name="scannedItemBarcode" Margin="311,93,-400,-42" Grid.Column="1" Background="#FFCADFE4" BorderBrush="#FF150303" FontSize="20" Grid.Row="1"/>
-            <TextBox Grid.Column="1" x:Name="scannedItemQuantity" Text="{Binding Path= ScannedQuantity}" Height="51" VerticalAlignment="Top" Margin="509,93,-619,-44" Background="#FFD8E0E2" BorderBrush="#FF1B0505" FontSize="20" Grid.Row="1"/>
+            <TextBox Text="{Binding Path= ScannedItemBarcode}" x:Name="scannedItemBarcode" Margin="308,95,-451,-44" Grid.Column="1" Background="#FF3E4A57" BorderBrush="#FF0074FF" FontSize="16" Grid.Row="1" Foreground="#FF0074FF"/>
+            <TextBox Grid.Column="1" x:Name="scannedItemQuantity" Text="{Binding Path= ScannedQuantity}" Height="51" VerticalAlignment="Top" Margin="571,93,-619,-44" Background="#FF3E4A57" BorderBrush="#FF0074FF" FontSize="16" Grid.Row="1" Foreground="#FF0074FF"/>
 
-            <Button Grid.Column="1" Margin="916,93,-988,-48" Grid.Row="1">
-                <Image Source="Images\print.ico" Width="88" />
-            
-            </Button>
-            <Button x:Name="AddItem" Command="{Binding AddItem}"  ToolTip="Add new Item" Margin="733,93,-805,-46" Grid.Column="1" Grid.Row="1">
-                <Image Source="Images\additem.ico" />
-            </Button>
-
+            <Button Command="{Binding AddItem}" x:Name="printButton"  Grid.Row="1" ToolTip="Print Invoice" Margin="890,87,-949,-42"  Grid.Column="1"  Style="{DynamicResource loginButton}"  Width="160" Content="Print Invoice"/>
+            <Button Command="{Binding AddItem}" x:Name="addItemButton"  ToolTip="Add new Item" Margin="725,87,-784,-42"  Grid.Column="1" Grid.Row="1"  Style="{DynamicResource loginButton}"  Width="160" Content="Add Itmes"/>
         </Grid>
 
         <DataGrid x:Name="MainGrid" 

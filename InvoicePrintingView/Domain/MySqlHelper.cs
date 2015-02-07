@@ -125,6 +125,18 @@ namespace InvoiceViewModel
         }
 
 
+        public static DataSet GetAllUsers()
+        {
+            MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
+            conn.Open();
+
+            MySqlCommand cmd = new MySqlCommand("Select username,password,role from users", conn);
+            MySqlDataAdapter adp = new MySqlDataAdapter(cmd);
+            DataSet ds = new DataSet();
+            adp.Fill(ds, "dataGridUsers");
+            return ds;
+        }
+
         public bool CreateUser(string username, string password, string role)
         {
             MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
