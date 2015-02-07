@@ -1,8 +1,17 @@
 ﻿<Window x:Class="InvoicePrintingView.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Invoice Billing" Width="1200" Height="600"  WindowStartupLocation="CenterScreen" Loaded="Window_Loaded_1">
-    
+        Title="Invoice Billing" 
+        Width="1200" Height="600"  
+        Loaded="Window_Loaded_1"
+        ResizeMode="NoResize"
+        WindowState="Maximized" Icon="Images\print.ico">
+    <Window.Resources>
+        <SolidColorBrush x:Key="ReadOnlyTextBrush" Color="#555555" />
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="Images/vector.png"/>
+    </Window.Background>
     <DockPanel>
 
         <DockPanel LastChildFill="False" DockPanel.Dock="Top" Margin="5,0,5,0">
@@ -15,33 +24,60 @@
         </DockPanel>
         
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-            <TextBlock Text="Number of items: " TextWrapping="NoWrap"/>
-            <TextBlock Text="{Binding Path = ItemCount}" TextWrapping="Wrap" />
+            <TextBlock Text="Number of items: " TextWrapping="NoWrap" FontSize="20" Foreground="#FFB62323"/>
+            <TextBlock Text="{Binding Path = ItemCount}" TextWrapping="Wrap" FontSize="20" Foreground="#FFCD1717"/>
         </StackPanel>
 
         <StackPanel DockPanel.Dock="Bottom" Orientation="Horizontal">
-            <TextBlock Text="Total Price: " TextWrapping="NoWrap"/>
-            <TextBlock Text="{Binding Path = TotalPrice}" TextWrapping="Wrap" />
+            <TextBlock Text="Total Price: " TextWrapping="NoWrap" FontSize="20" Foreground="#FFB01F1F"/>
+            <TextBlock Text="{Binding Path = TotalPrice}" TextWrapping="Wrap" FontSize="20" Foreground="#FFB41313" />
         </StackPanel>
-        
+
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="100"  />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="100" />
+            </Grid.RowDefinitions>
+
+            <TextBox Text="{Binding Path= ScannedItemBarcode}" x:Name="scannedItemBarcode" Margin="311,93,-400,-42" Grid.Column="1" Background="#FFCADFE4" BorderBrush="#FF150303" FontSize="20" Grid.Row="1"/>
+            <TextBox Grid.Column="1" x:Name="scannedItemQuantity" Text="{Binding Path= ScannedQuantity}" Height="51" VerticalAlignment="Top" Margin="509,93,-619,-44" Background="#FFD8E0E2" BorderBrush="#FF1B0505" FontSize="20" Grid.Row="1"/>
+
+            <Button Grid.Column="1" Margin="916,93,-988,-48" Grid.Row="1">
+                <Image Source="Images\print.ico" Width="88" />
+            
+            </Button>
+            <Button x:Name="AddItem" Command="{Binding AddItem}"  ToolTip="Add new Item" Margin="733,93,-805,-46" Grid.Column="1" Grid.Row="1">
+                <Image Source="Images\additem.ico" />
+            </Button>
+
+        </Grid>
+
         <DataGrid x:Name="MainGrid" 
                   ItemsSource="{Binding Path = OBProductList}" 
                   AutoGenerateColumns="False" 
                   FontSize="20" 
-                  ColumnWidth="200" 
-                  CanUserSortColumns="False" >
+                  ColumnWidth="*" 
+                  CanUserSortColumns="False" Margin="0,0,0,-176" Foreground="#FF090109" Opacity="0.5" BorderThickness="0" HeadersVisibility="Column" >
+            
             <DataGrid.Columns>
                 
-                <DataGridTextColumn Header="Item Number" Width="150" Binding="{Binding  SequenceNumber}" IsReadOnly="True"/>
-                <DataGridTextColumn Header="Product Barcode" Width="150" Binding="{Binding Path = Barcode}" IsReadOnly="false">
+                <DataGridTextColumn Header="Item Number" Width="150" Binding="{Binding  SequenceNumber}" IsReadOnly="True">
+                   
+                </DataGridTextColumn>
+                <DataGridTextColumn Header="Product Barcode" Width="200" Binding="{Binding Path = Barcode}" IsReadOnly="false">
                         <DataGridTextColumn.EditingElementStyle >
                             <Style TargetType="TextBox">
-                                <Setter Property="MaxLength" Value="40"></Setter>
+                                <Setter Property="MaxLength" Value="50"></Setter>
                             </Style>
                         </DataGridTextColumn.EditingElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTextColumn Header="Description" Width="200"  IsReadOnly="True"  Binding="{Binding Path = ProductName}"/>
-                <DataGridTextColumn Header="Quantity" Width="50"  IsReadOnly="false" Binding="{Binding Path = Quantity}">
+                <DataGridTextColumn Header="Description" Width="150"  IsReadOnly="True"  Binding="{Binding Path = Description}"/>
+                <DataGridTextColumn Header="Partner" Width="150" Binding="{Binding  Partner}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Quantity" Width="150"  IsReadOnly="false" Binding="{Binding Path = Quantity}">
                 <DataGridTextColumn.EditingElementStyle >
                     <Style TargetType="TextBox">
                         <Setter Property="MaxLength" Value="10"></Setter>
@@ -49,9 +85,9 @@
                 </DataGridTextColumn.EditingElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn Header="Unit Price ($)" Width="150" IsReadOnly="True" Binding="{Binding Path = UnitPrice}"/>
-                <DataGridTextColumn Header="Sub TotalPrice" Width="150"  IsReadOnly="false" Binding="{Binding Path = SubTotal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"/>
+                <DataGridTextColumn Header="Sub TotalPrice" Width="*"  IsReadOnly="false" Binding="{Binding Path = SubTotal, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, NotifyOnSourceUpdated=True}"/>
             </DataGrid.Columns>
         </DataGrid>
-      
+        
     </DockPanel>
 </Window>

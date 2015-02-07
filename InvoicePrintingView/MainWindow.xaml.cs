@@ -27,7 +27,7 @@ namespace InvoicePrintingView
         public MainWindow()
         {
             InitializeComponent();
-            base.DataContext = new Product();
+            base.DataContext = new ViewModel();
         }
 
         private void Window_Loaded_1(object sender, RoutedEventArgs e)

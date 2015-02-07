@@ -66,6 +66,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AddItemCommand.cs" />
+    <Compile Include="Domain\DBProduct.cs" />
     <Compile Include="Domain\MySqlHelper.cs" />
     <Compile Include="Domain\PdfHelper.cs" />
     <Compile Include="Domain\ScannedProduc.cs" />
@@ -73,6 +75,7 @@
     <Compile Include="UtilityClasses\ISequencedObject.cs" />
     <Compile Include="UtilityClasses\ObservableObject.cs" />
     <Compile Include="UtilityClasses\ViewModelBase.cs" />
+    <Compile Include="ViewModel\ViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -118,8 +121,16 @@
     <Resource Include="Images\delete_item.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Commands\" />
-    <Folder Include="ViewModel\" />
+    <Resource Include="Images\additem.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\print.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Window_Gang_background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\vector.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
