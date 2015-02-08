@@ -18,6 +18,7 @@ namespace InvoiceViewModel
         public String LoginPassword { get; set; }
         LoginForm.MainWindow mloginwindow;
         InvoicePrintingView.MainWindow productlistWindow;
+        AdminMenu adminmenu;
         public ICommand LoginCommand { get; set; }
 
         public DBUserVM(LoginForm.MainWindow loginwindow)
@@ -29,11 +30,21 @@ namespace InvoiceViewModel
 
         public void CloseLoginWindow()
         {
+            this.mloginwindow.Close();
+        }
+
+        public void LaunchInvoiceView()
+        {
             productlistWindow = new InvoicePrintingView.MainWindow();
             productlistWindow.Show();
-            this.mloginwindow.Close();
-
         }
+
+        public void LaunchAdminMenuView(string  loginusername)
+        {
+            adminmenu = new AdminMenu();
+            adminmenu.Show();
+        }
+
         /*
             if (checkAuthenication(username.Text, "admin"))
             {
@@ -68,14 +79,18 @@ namespace InvoiceViewModel
             }
         }
 
-        public bool checkAuthenication(string username, string password)
+        public bool checkAuthenication(string username, string password, ref bool isAdmin)
         {
             if (null != userListFromDB)
             {
                 foreach (DBUser user in userListFromDB)
                 {
                     if (username == user.Username && user.Password == password)
+                    {
+                        if (user.Role == "admin")
+                            isAdmin = true;
                         return true;
+                    }
                 }
             }
             return false;

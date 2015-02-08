@@ -69,8 +69,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="admin\AdminMenu.xaml.cs">
+      <DependentUpon>AdminMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="admin\AddUser.xaml.cs">
+      <DependentUpon>AddUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="admin\AddProduct.xaml.cs">
+      <DependentUpon>AddProduct.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Commands\AddItemCommand.cs" />
+    <Compile Include="Commands\SaveProductCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
+    <Compile Include="Commands\SaveUserCommand.cs" />
     <Compile Include="Domain\DBProduct.cs" />
     <Compile Include="Domain\DBUser.cs" />
     <Compile Include="Domain\MySqlHelper.cs" />
@@ -84,8 +95,23 @@
     <Compile Include="UtilityClasses\ObservableObject.cs" />
     <Compile Include="UtilityClasses\PasswordBoxAssistant.cs" />
     <Compile Include="UtilityClasses\ViewModelBase.cs" />
+    <Compile Include="ViewModel\AdminMenuVM.cs" />
+    <Compile Include="ViewModel\SaveProductVM.cs" />
+    <Compile Include="ViewModel\SaveUserVM.cs" />
     <Compile Include="ViewModel\DBUserVM.cs" />
     <Compile Include="ViewModel\ViewModel.cs" />
+    <Page Include="admin\AdminMenu.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="admin\AddUser.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="admin\AddProduct.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="login\LoginMainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

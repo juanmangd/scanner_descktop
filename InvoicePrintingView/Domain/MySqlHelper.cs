@@ -50,10 +50,10 @@ namespace InvoiceViewModel
             
             comm.Parameters.Add("?code",MySqlDbType.VarChar).Value = code;
             comm.Parameters.Add("?description", MySqlDbType.Text).Value = description;
-            comm.Parameters.Add("?barcode", MySqlDbType.Int64).Value = barcode;
-            comm.Parameters.Add("?price", MySqlDbType.Double).Value = price;
+            comm.Parameters.Add("?barcode", MySqlDbType.Int64).Value = int.Parse(barcode);
+            comm.Parameters.Add("?price", MySqlDbType.Double).Value = double.Parse(price);
             comm.Parameters.Add("?partner", MySqlDbType.VarChar).Value = sourceParner;
-            comm.Parameters.Add("?created_by", MySqlDbType.Int32).Value = createdBy;
+            comm.Parameters.Add("?created_by", MySqlDbType.Int32).Value = 1;// createdBy;//change database createdby to string
 
          
             try
@@ -137,7 +137,7 @@ namespace InvoiceViewModel
             return ds;
         }
 
-        public bool CreateUser(string username, string password, string role)
+        public static bool CreateUser(string username, string password, string role)
         {
             MySqlConnection conn = new MySqlConnection(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString);
             conn.Open();
