@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Data;
 using InvoiceViewModel;
 using System.Windows.Input;
+using System.Windows;
 
 namespace InvoiceViewModel
 {
@@ -17,6 +18,8 @@ namespace InvoiceViewModel
         private int p_ItemCount;
         static List<DBProduct> produtListFromDB;
         public ICommand AddItem { get; set; }
+        public ICommand PrintInvoice { get; set; }
+
         public String ScannedItemBarcode { get; set; }
         public String ScannedQuantity { get; set; }
 
@@ -77,6 +80,23 @@ namespace InvoiceViewModel
 
         }
 
+        public void PrintInvoiceFromList()
+        {
+            MessageBoxResult result = MessageBox.Show("PrintInvoiceFromList", "PrintInvoiceFromList", MessageBoxButton.OK);
+        }
+
+        public Product CheckIfProductExist(string scannedBarcode)
+        {
+            ObservableCollection<Product> obsColl = p_ProductList;
+            foreach (Product data in obsColl)
+            {
+                if (data.Barcode == long.Parse(scannedBarcode))
+                {
+                    return data;
+                }
+            }
+            return null;
+        }
         public DBProduct GetProductForBarcode(string barcode)
         {
             foreach (DBProduct p in produtListFromDB)
@@ -95,7 +115,7 @@ namespace InvoiceViewModel
                 GetProductDetails();
 
                 this.AddItem = new AddItemCommand(this);
-
+                this.PrintInvoice = new PrintInvoiceCommand(this);
                 // Create grocery list
                 p_ProductList = new ObservableCollection<Product>();
 

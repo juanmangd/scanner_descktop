@@ -79,6 +79,7 @@
       <DependentUpon>AddProduct.xaml</DependentUpon>
     </Compile>
     <Compile Include="Commands\AddItemCommand.cs" />
+    <Compile Include="Commands\PrintInvoiceCommand.cs" />
     <Compile Include="Commands\SaveProductCommand.cs" />
     <Compile Include="Commands\LoginCommand.cs" />
     <Compile Include="Commands\SaveUserCommand.cs" />

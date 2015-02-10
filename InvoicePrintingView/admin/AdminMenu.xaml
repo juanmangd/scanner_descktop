@@ -73,7 +73,7 @@
 							<Rectangle x:Name="rectangle" Stroke="#FF0074FF" StrokeThickness="1" RadiusX="20" RadiusY="20" Margin="8">
 								<Rectangle.Fill>
 									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" MappingMode="RelativeToBoundingBox">
-										<GradientStop Color="#FF3E4A57" Offset="0.134"/>
+										<GradientStop Color="#FFF6F6F6" Offset="0.134"/>
 										<GradientStop Color="#FF778796" Offset="0.071"/>
 									</LinearGradientBrush>
 								</Rectangle.Fill>
@@ -97,7 +97,7 @@
 								<Setter Property="Fill" TargetName="rectangle">
 									<Setter.Value>
 										<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" MappingMode="RelativeToBoundingBox">
-											<GradientStop Color="#FF3E4A57" Offset="0.134"/>
+											<GradientStop Color="#FFF6F6F6" Offset="0.134"/>
 											<GradientStop Color="#FFD42718" Offset="0.071"/>
 										</LinearGradientBrush>
 									</Setter.Value>
@@ -114,7 +114,7 @@
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type TextBox}">
 						<Grid>
-							<TextBox Text="" TextWrapping="Wrap" Background="#FF3E4A57" BorderBrush="#FF0074FF" FontSize="21.333" Foreground="#FF0074FF"/>
+							<TextBox Text="" TextWrapping="Wrap" Background="#FFF6F6F6" BorderBrush="#FF0074FF" FontSize="21.333" Foreground="#FF0074FF"/>
 						</Grid>
 					</ControlTemplate>
 				</Setter.Value>
@@ -128,7 +128,7 @@
 							<Rectangle x:Name="rectangle" Stroke="#FF0074FF" StrokeThickness="2" RadiusX="20" RadiusY="20">
 								<Rectangle.Fill>
 									<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" MappingMode="RelativeToBoundingBox">
-										<GradientStop Color="#FF3E4A57" Offset="0.134"/>
+										<GradientStop Color="#FFF6F6F6" Offset="0.134"/>
 										<GradientStop Color="#FF778796" Offset="0.071"/>
 									</LinearGradientBrush>
 								</Rectangle.Fill>
@@ -142,7 +142,7 @@
 								<Setter Property="Fill" TargetName="rectangle">
 									<Setter.Value>
 										<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" MappingMode="RelativeToBoundingBox">
-											<GradientStop Color="#FF3E4A57" Offset="0.975"/>
+											<GradientStop Color="#FFF6F6F6" Offset="0.975"/>
 											<GradientStop Color="#FF445E76" Offset="0.465"/>
 										</LinearGradientBrush>
 									</Setter.Value>
@@ -152,7 +152,7 @@
 								<Setter Property="Fill" TargetName="rectangle">
 									<Setter.Value>
 										<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" MappingMode="RelativeToBoundingBox">
-											<GradientStop Color="#FF3E4A57" Offset="0.922"/>
+											<GradientStop Color="#FFF6F6F6" Offset="0.922"/>
 											<GradientStop Color="#FF202628" Offset="0.071"/>
 										</LinearGradientBrush>
 									</Setter.Value>
@@ -180,7 +180,7 @@
 				<Setter.Value>
 					<ControlTemplate TargetType="{x:Type PasswordBox}">
 						<Microsoft_Windows_Themes:ClassicBorderDecorator x:Name="Bd" SnapsToDevicePixels="true" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderStyle="Sunken" BorderThickness="{TemplateBinding BorderThickness}">
-							<ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Background="#FF3E4A57" Foreground="#FF0074FF" BorderBrush="Black"/>
+							<ScrollViewer x:Name="PART_ContentHost" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" Background="#FFF6F6F6" Foreground="#FF0074FF" BorderBrush="Black"/>
 						</Microsoft_Windows_Themes:ClassicBorderDecorator>
 						<ControlTemplate.Triggers>
 							<Trigger Property="IsEnabled" Value="false">
@@ -197,7 +197,7 @@
 	<Rectangle Stroke="#FF0074FF" StrokeThickness="2" RadiusX="20" RadiusY="20" Margin="71,10,74,70" MouseDown="Rectangle_MouseDown">
 		<Rectangle.Fill>
 			<LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0" MappingMode="RelativeToBoundingBox">
-				<GradientStop Color="#FF3E4A57" Offset="0.134"/>
+				<GradientStop Color="#FFF6F6F6" Offset="0.134"/>
 				<GradientStop Color="#FF778796" Offset="0.071"/>
 			</LinearGradientBrush>
 		</Rectangle.Fill>

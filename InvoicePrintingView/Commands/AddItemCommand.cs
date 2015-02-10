@@ -1,6 +1,6 @@
 using System;
 using System.Windows.Input;
-
+using System.Windows;
 namespace InvoiceViewModel
 {
 
@@ -55,19 +55,26 @@ public bool CanExecute(object parameter)
                     quantity = int.Parse(m_ViewModel.ScannedQuantity);
                 }
 
+                Product productFromDB = m_ViewModel.CheckIfProductExist(m_ViewModel.ScannedItemBarcode);
+                if (null != productFromDB)
+                {
+                    productFromDB.Quantity = productFromDB.Quantity + quantity;
+                    return;
+                }
+
                 DBProduct p = m_ViewModel.GetProductForBarcode(m_ViewModel.ScannedItemBarcode);
                 if (null != p)
                 {
-                    //p.Quantity = quantity;
                     Product modelp = new Product(m_ViewModel, p.Partner, quantity, p.Code, long.Parse(p.Barcode), p.Creator, p.Description, double.Parse(p.UnitPrice), m_ViewModel.ItemCount);
 
                     m_ViewModel.OBProductList.Add(modelp);
-                   // m_ViewModel.Quantity = quantity;
-                  //  m_ViewModel.SubTotal = quantity * p.UnitPrice;
+                }
+                else
+                {
+                    MessageBoxResult result = MessageBox.Show("Scanned barcode does not exist in database", "Database Error", MessageBoxButton.OK);
                 }
             }
-           // var selectedItem = m_ViewModel.SelectedItem;
-          //  m_ViewModel.GroceryList.Remove(selectedItem);
+           
         }
 
         #endregion
